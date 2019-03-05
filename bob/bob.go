@@ -7,16 +7,30 @@ package bob
 
 import "strings"
 
+const letters = "abcdefghijklmnopqrstuvwxyz"
+
 // Hey should have a comment documenting it.
 func Hey(remark string) string {
-	if remark == strings.ToUpper(remark) && strings.HasSuffix(remark, "?") {
+	isUpper := strings.ToUpper(remark) == remark
+	isQuestion := strings.HasSuffix(remark, "?")
+	isExclamation := strings.HasSuffix(remark, "!")
+	switch {
+	case isUpper && isQuestion && onlyLetters(remark):
 		return "Calm down, I know what I'm doing!"
-	} else if remark == strings.ToUpper(remark) {
+	case (isUpper && isExclamation) || (isUpper && onlyLetters(remark)):
 		return "Whoa, chill out!"
-	} else if strings.HasSuffix(remark, "?") {
+	case isQuestion:
 		return "Sure."
-	} else {
+	default:
 		return "Whatever."
-
 	}
+}
+
+func onlyLetters(phrase string) bool {
+	for _, char := range phrase {
+		if !strings.Contains(letters, strings.ToLower(string(char))) {
+			return false
+		}
+	}
+	return true
 }
