@@ -12,7 +12,6 @@ func Convert(n int) (result string) {
 	}
 	for num, noise := range dropMapping {
 		if n%num == 0 {
-			n /= num
 			result += noise
 
 		}
