@@ -31,6 +31,9 @@ func Score(n string) (total int) {
 		"w": 4,
 		"y": 4,
 		"k": 5,
+		"j": 8,
+		"x": 8,
+		"q": 10,
 		"z": 10,
 	}
 	lowerCase := strings.ToLower(n)
